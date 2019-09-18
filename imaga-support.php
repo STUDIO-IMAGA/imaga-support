@@ -8,6 +8,13 @@
 * Author URI: https://imaga.nl/
 **/
 
+require 'imaga-updater.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'https://github.com/STUDIO-IMAGA/imaga-support',
+	__FILE__,
+	'imaga-support'
+);
+
 function imaga_dashboard_scripts() {
   wp_register_style( 'imaga-support', plugin_dir_url(  __FILE__) . 'style.min.css' );
   wp_enqueue_style( 'imaga-support' );
@@ -33,7 +40,6 @@ add_action( 'wp_dashboard_setup', 'imaga_dashboard_remove_dashboard_widgets' );
 
 function setup_imaga_support_dashboard_widgets() {
   add_meta_box( 'imaga_dashboard_informatie', 'IMAGA - Ken Uw Klant', 'imaga_informatie_widget', 'dashboard', 'normal', 'high' );
-  add_meta_box( 'imaga_dashboard_support', 'Hulp en ondersteuning', 'imaga_support_widget', 'dashboard', 'normal', 'high' );
 }
 add_action( 'wp_dashboard_setup', 'setup_imaga_support_dashboard_widgets' );
 
@@ -50,7 +56,7 @@ function imaga_informatie_widget() {
         <svg class="imaga-icon" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 0C2.69 0 0 2.5 0 5.5 0 10.02 6 16 6 16s6-5.98 6-10.5C12 2.5 9.31 0 6 0zm0 14.55C4.14 12.52 1 8.44 1 5.5 1 3.02 3.25 1 6 1c1.34 0 2.61.48 3.56 1.36.92.86 1.44 1.97 1.44 3.14 0 2.94-3.14 7.02-5 9.05zM8 5.5c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
       </div>
       <div class="imaga-adres-info">
-        <a href="https://www.google.com/maps/dir/Current+Location/Zuiderplein+15+8911+AM+Leeuwarden" target="_blank">
+        <a href="//google.com/maps/dir/Current+Location/Zuiderplein+15+8911+AM+Leeuwarden" target="_blank">
           Zuiderplein 15<br/>
           8911 AM Leeuwarden
         </a>
@@ -58,6 +64,7 @@ function imaga_informatie_widget() {
     </div>
     <hr/>
     <div class="imaga-contact">
+      <p>Voor ondersteuning en andere vragen kun je contact opnemen met onze supportafdeling.</p>
       <a href="tel:31652673086">
         <svg class="imaga-icon" viewBox="0 0 10 16" version="1.1" width="10" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M9 0H1C.45 0 0 .45 0 1v14c0 .55.45 1 1 1h8c.55 0 1-.45 1-1V1c0-.55-.45-1-1-1zM5 15.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zM9 12H1V2h8v10z"></path></svg>
         +31 6 52 67 30 86
@@ -75,25 +82,6 @@ function imaga_informatie_widget() {
       </a>
       <br/>
     </div>
-  </div>
-  <?php
-}
-
-function imaga_support_widget() {
-  ?>
-  <div class="imaga-widget imaga_support">
-    <p class="imaga-contact">
-      Voor ondersteuning en andere vragen kan je contact opnemen met onze supportafdeling.<br/><br/>
-      <a href="tel:31652673086">
-        <svg class="imaga-icon" viewBox="0 0 10 16" version="1.1" width="10" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M9 0H1C.45 0 0 .45 0 1v14c0 .55.45 1 1 1h8c.55 0 1-.45 1-1V1c0-.55-.45-1-1-1zM5 15.3c-.72 0-1.3-.58-1.3-1.3 0-.72.58-1.3 1.3-1.3.72 0 1.3.58 1.3 1.3 0 .72-.58 1.3-1.3 1.3zM9 12H1V2h8v10z"></path></svg>
-        +31 6 52 67 30 86
-      </a>
-      <br/>
-      <a href="mailto:support@imaga.nl">
-        <svg class="imaga-icon" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 4v8c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H1c-.55 0-1 .45-1 1zm13 0L7 9 1 4h12zM1 5.5l4 3-4 3v-6zM2 12l3.5-3L7 10.5 8.5 9l3.5 3H2zm11-.5l-4-3 4-3v6z"></path></svg>
-        support@imaga.nl
-      </a>
-    </p>
   </div>
   <?php
 }
