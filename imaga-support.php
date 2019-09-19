@@ -3,17 +3,20 @@
 * Plugin Name: IMAGA Support
 * Plugin URI: https://imaga.nl/
 * Description: Deze plugin verzorgd het dashboard van handige informatie.
-* Version: 2.1
+* Version: 2.2
 * Author: Odilio Witteveen
 * Author URI: https://imaga.nl/
 **/
 
 require 'imaga-updater.php';
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+
+$puc = Puc_v4_Factory::buildUpdateChecker(
 	'https://github.com/STUDIO-IMAGA/imaga-support',
 	__FILE__,
 	'imaga-support'
 );
+
+$puc->getVcsApi()->enableReleaseAssets();
 
 function imaga_dashboard_scripts() {
   wp_register_style( 'imaga-support', plugin_dir_url(  __FILE__) . 'style.min.css' );
