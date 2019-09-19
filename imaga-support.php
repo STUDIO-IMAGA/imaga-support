@@ -3,7 +3,7 @@
 * Plugin Name: IMAGA Support
 * Plugin URI: https://imaga.nl/
 * Description: Deze plugin verzorgd het dashboard van handige informatie.
-* Version: 2.2
+* Version: 2.3
 * Author: Odilio Witteveen
 * Author URI: https://imaga.nl/
 **/
